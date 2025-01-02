@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1st Year PYQs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #007bff, #00d4ff);
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    .countdown {
+      margin-top: 20px;
+      font-size: 2em;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px 40px;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+      color: #white;
+    }
+
+    .countdown-item {
+      font-size: 1.5em;
+      margin: 5px 0;
+    }
+
+    .button {
+      display: inline-block;
+      background: white;
+      color: #007bff;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-radius: 25px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      color: #fff;
+    }
+
+    .footer span {
+      color: #00ffcc;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to PYQs Hub</h1>
+  <h2>Your 1st Year Question Papers are Coming Soon!</h2>
+  <div class="countdown" id="countdown">
+    <div class="countdown-item" id="remaining-time">Come back in: Loading...</div>
+  </div>
+  <a href="https://www.instagram.com/unusualcoder" class="button" target="_blank">Stay Updated</a>
+  <div class="footer">
+    Designed by <span>Vardan</span>
+  </div>
+
+  <script>
+    // Countdown Timer Script
+    const remainingTimeElement = document.getElementById("remaining-time");
+
+    function updateCountdown() {
+      const now = new Date();
+
+      // Calculate target time: Sunday 12:00 AM IST
+      const target = new Date();
+      target.setHours(0, 0, 0, 0); // Set time to midnight
+      target.setDate(
+        target.getDate() + ((7 - target.getDay()) % 7) // Adjust to next Sunday
+      );
+
+      const timeDiff = target - now;
+
+      if (timeDiff <= 0) {
+        remainingTimeElement.innerText = "Ready Now!";
+        return;
+      }
+
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeDiff / 1000) % 60);
+
+      remainingTimeElement.innerText = `Come back in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
